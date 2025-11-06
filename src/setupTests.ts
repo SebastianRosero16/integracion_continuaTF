@@ -52,6 +52,7 @@ if (!HTMLCanvasElement.prototype.getContext) {
       rotate: noop,
     };
 
+    
     return ctx as unknown as CanvasRenderingContext2D;
   };
 }
