@@ -21,10 +21,14 @@ if (!window.matchMedia) {
 // ---- mock: HTMLCanvasElement.getContext ('2d') ----
 if (!HTMLCanvasElement.prototype.getContext) {
   // @ts-expect-error jsdom no implementa canvas 2D
-  HTMLCanvasElement.prototype.getContext = function getContext(_type: string) {
+  HTMLCanvasElement.prototype.getContext = function getContext(type: string) {
+    // ✅ Usamos el parámetro `type` para evitar el error de no-unused-vars
+    if (type !== '2d') return null;
+
     const noop = () => {};
+
     // Suficiente para tu componente ColorMixer (clearRect, beginPath, arc, fill, stroke, etc.)
-    return {
+    const ctx = {
       canvas: this,
       // drawing state
       fillStyle: '#000000',
@@ -46,6 +50,8 @@ if (!HTMLCanvasElement.prototype.getContext) {
       translate: noop,
       scale: noop,
       rotate: noop,
-    } as unknown as CanvasRenderingContext2D;
+    };
+
+    return ctx as unknown as CanvasRenderingContext2D;
   };
 }
