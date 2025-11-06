@@ -1,88 +1,51 @@
 // src/setupTests.ts
 import '@testing-library/jest-dom';
 
-// Mock sólido para <canvas> en JSDOM
-// Evita "Not implemented: HTMLCanvasElement.prototype.getContext"
-const mockCanvasContext = () => {
-  const gradient = { addColorStop: jest.fn() };
-
-  return {
-    // Estado/props comunes
-    fillStyle: '',
-    strokeStyle: '',
-    lineWidth: 1,
-    font: '',
-
-    // Dibujo básico
-    fillRect: jest.fn(),
-    clearRect: jest.fn(),
-    strokeRect: jest.fn(),
-    beginPath: jest.fn(),
-    closePath: jest.fn(),
-    moveTo: jest.fn(),
-    lineTo: jest.fn(),
-    rect: jest.fn(),
-    arc: jest.fn(),
-    quadraticCurveTo: jest.fn(),
-    bezierCurveTo: jest.fn(),
-    clip: jest.fn(),
-    stroke: jest.fn(),
-    fill: jest.fn(),
-
-    // Transformaciones
-    save: jest.fn(),
-    restore: jest.fn(),
-    translate: jest.fn(),
-    rotate: jest.fn(),
-    scale: jest.fn(),
-    setTransform: jest.fn(),
-    transform: jest.fn(),
-
-    // Texto
-    fillText: jest.fn(),
-    strokeText: jest.fn(),
-    measureText: jest.fn(() => ({ width: 0 })),
-
-    // Imágenes y pixeles
-    drawImage: jest.fn(),
-    getImageData: jest.fn(() => ({ data: new Uint8ClampedArray(0), width: 0, height: 0 })),
-    putImageData: jest.fn(),
-    createImageData: jest.fn(() => ({ data: new Uint8ClampedArray(0), width: 0, height: 0 })),
-
-    // Gradientes y patrones
-    createLinearGradient: jest.fn(() => gradient),
-    createRadialGradient: jest.fn(() => gradient),
-    createPattern: jest.fn(),
-
-    // Hit testing
-    isPointInPath: jest.fn(),
-    isPointInStroke: jest.fn(),
-  } as unknown as CanvasRenderingContext2D;
-};
-
-// Mockea getContext y toDataURL antes de cada test
-beforeAll(() => {
-  Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-    value: jest.fn(() => mockCanvasContext()),
-    configurable: true,
+// ---- mock: window.matchMedia (Navbar u otros pueden llamarlo) ----
+if (!window.matchMedia) {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),            // legacy
+      removeListener: jest.fn(),         // legacy
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    }),
   });
+}
 
-  Object.defineProperty(HTMLCanvasElement.prototype, 'toDataURL', {
-    value: jest.fn(() => 'data:image/png;base64,'),
-    configurable: true,
-  });
-});
-
-// Opcional: silenciar el warning específico si quedó en caché
-const originalError = console.error;
-beforeEach(() => {
-  console.error = (...args: any[]) => {
-    const msg = String(args[0] ?? '');
-    if (msg.includes('Not implemented: HTMLCanvasElement.prototype.getContext')) return;
-    originalError(...args);
+// ---- mock: HTMLCanvasElement.getContext ('2d') ----
+if (!HTMLCanvasElement.prototype.getContext) {
+  // @ts-expect-error jsdom no implementa canvas 2D
+  HTMLCanvasElement.prototype.getContext = function getContext(_type: string) {
+    const noop = () => {};
+    // Suficiente para tu componente ColorMixer (clearRect, beginPath, arc, fill, stroke, etc.)
+    return {
+      canvas: this,
+      // drawing state
+      fillStyle: '#000000',
+      strokeStyle: '#000000',
+      lineWidth: 1,
+      // APIs usadas
+      clearRect: noop,
+      beginPath: noop,
+      arc: noop,
+      fill: noop,
+      stroke: noop,
+      // extras comunes (por si en el futuro se usan)
+      rect: noop,
+      moveTo: noop,
+      lineTo: noop,
+      closePath: noop,
+      save: noop,
+      restore: noop,
+      translate: noop,
+      scale: noop,
+      rotate: noop,
+    } as unknown as CanvasRenderingContext2D;
   };
-});
-
-afterAll(() => {
-  console.error = originalError;
-});
+}
