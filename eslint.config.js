@@ -73,22 +73,27 @@ export default [
     },
   },
 
-  // Overrides para archivos de configuración CommonJS específicos
+  // ✅ Overrides para *cualquier* archivo CommonJS (.cjs)
+  //    (incluye jest.config.cjs y postcss.config.cjs)
   {
-    files: ["postcss.config.cjs"],
+    files: ["**/*.cjs"],
     languageOptions: {
       sourceType: "commonjs",
       globals: {
         require: "readonly",
         module: "readonly",
+        exports: "readonly",
         __dirname: "readonly",
         process: "readonly",
-        exports: "readonly",
       },
+    },
+    // Evita falsos positivos de no-undef en CJS
+    rules: {
+      "no-undef": "off",
     },
   },
 
-  // Overrides para configs ESM
+  // Overrides para configs ESM concretos (si los tuvieras)
   {
     files: ["eslint.config.js", "jest.config.js"],
     languageOptions: {
@@ -96,5 +101,3 @@ export default [
     },
   },
 ];
-
-
