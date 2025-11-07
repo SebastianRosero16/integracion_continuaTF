@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.59% </span>
+                <span class="strong">95.74% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>36/47</span>
+                <span class='fraction'>45/47</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.27% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>34/44</span>
+                <span class='fraction'>44/44</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -302,11 +302,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">96x</span>
-<span class="cline-any cline-yes">96x</span>
-<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-yes">120x</span>
+<span class="cline-any cline-yes">120x</span>
+<span class="cline-any cline-yes">120x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-yes">120x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,20 +321,20 @@
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -538,22 +538,22 @@ const ColorMixer: React.FC = () =&gt; {
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!canvas) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
     const ctx = canvas.getContext('2d');
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (!ctx) return;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!ctx) <span class="cstat-no" title="statement not covered" >return;</span>
 &nbsp;
-    const mixedColor = <span class="cstat-no" title="statement not covered" >getMixedColor();</span>
-    const fillColor = <span class="cstat-no" title="statement not covered" >`rgb(${Math.round(mixedColor.r)}, ${Math.round(mixedColor.g)}, ${Math.round(mixedColor.b)})`;</span>
+    const mixedColor = getMixedColor();
+    const fillColor = `rgb(${Math.round(mixedColor.r)}, ${Math.round(mixedColor.g)}, ${Math.round(mixedColor.b)})`;
 &nbsp;
     // Limpiar canvas
-<span class="cstat-no" title="statement not covered" >    ctx.clearRect(0, 0, canvas.width, canvas.height);</span>
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 &nbsp;
     // Dibujar círculo con color mezclado
-<span class="cstat-no" title="statement not covered" >    ctx.beginPath();</span>
-<span class="cstat-no" title="statement not covered" >    ctx.arc(150, 150, 120, 0, 2 * Math.PI);</span>
-<span class="cstat-no" title="statement not covered" >    ctx.fillStyle = fillColor;</span>
-<span class="cstat-no" title="statement not covered" >    ctx.fill();</span>
-<span class="cstat-no" title="statement not covered" >    ctx.strokeStyle = '#333';</span>
-<span class="cstat-no" title="statement not covered" >    ctx.lineWidth = 3;</span>
-<span class="cstat-no" title="statement not covered" >    ctx.stroke();</span>
+    ctx.beginPath();
+    ctx.arc(150, 150, 120, 0, 2 * Math.PI);
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 3;
+    ctx.stroke();
   }, [colors]);
 &nbsp;
   // Manejador de cambio de slider
@@ -727,7 +727,7 @@ export default ColorMixer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-07T04:48:11.860Z
+                at 2025-11-07T05:25:42.380Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

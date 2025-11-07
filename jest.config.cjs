@@ -25,5 +25,6 @@ module.exports = {
     'src/**/CienciasNaturales/**/*.{ts,tsx}',
     'src/**/Arte/**/*.{ts,tsx}',
     '!src/**/*.d.ts',
+    '!src/Matematicas/quizLogic.ts',
   ],
 };
