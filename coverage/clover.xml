@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1762493142477" clover="3.2.0">
-  <project timestamp="1762493142477" name="All files">
-    <metrics statements="145" coveredstatements="127" conditionals="49" coveredconditionals="39" methods="51" coveredmethods="45" elements="245" coveredelements="211" complexity="0" loc="145" ncloc="145" packages="4" files="4" classes="4"/>
+<coverage generated="1762494785997" clover="3.2.0">
+  <project timestamp="1762494785997" name="All files">
+    <metrics statements="140" coveredstatements="127" conditionals="49" coveredconditionals="39" methods="49" coveredmethods="45" elements="238" coveredelements="211" complexity="0" loc="140" ncloc="140" packages="3" files="3" classes="3"/>
     <package name="Arte.ColorMixer">
       <metrics statements="44" coveredstatements="44" conditionals="4" coveredconditionals="2" methods="15" coveredmethods="15"/>
       <file name="ColorMixer.tsx" path="C:\Users\Sebastian\Desktop\integracion_continuaTF\src\components\Arte\ColorMixer\ColorMixer.tsx">
@@ -91,17 +91,6 @@
         <line num="241" count="180" type="stmt"/>
         <line num="243" count="0" type="stmt"/>
         <line num="289" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="Matematicas">
-      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="quizLogic.ts" path="C:\Users\Sebastian\Desktop\integracion_continuaTF\src\components\Matematicas\quizLogic.ts">
-        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
       </file>
     </package>
     <package name="Matematicas.MultiplicationTable">
